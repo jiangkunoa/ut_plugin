@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<style type="text/css">
+	</style>
+	<body>
+	</body>
+	<script type="text/javascript">
+		var url = 'https://unbug.github.io/codelf/#';
+		utools.onPluginEnter(({code, type, payload}) => {
+			doSearch()
+		})
+		function doSearch() {
+			var input = utools.setSubInput(({ text }) => {
+			  console.log(text)
+			  window.SubInputValue = text;
+			}, '起名儿', true)
+		}
+		document.addEventListener('keydown', e => {
+	        if (e.which == 13) {
+	            toBrowser();
+	        }
+	    })
+	    function toBrowser() {
+	    	var id = getBrowserId()
+	    	if (id == null) {
+	    		utools.ubrowser.goto(url + window.SubInputValue).run() 
+	    	} else {
+	    		utools.ubrowser.goto(url + window.SubInputValue).run(id) 
+	    	}
+	    }
+
+	    function getBrowserId() {
+	    	var idles = utools.getIdleUBrowsers()
+	    	for (var i = 0; i < idles.length; i ++) {
+	    		if (idles[i].url.startsWith(url)) {
+	    			return idles[i].id;
+	    		}
+	    	}
+	    	return null;
+	    }
+
+	</script>
+	<!-- <script type="text/javascript" src="js/index.js"></script> -->
+</html>

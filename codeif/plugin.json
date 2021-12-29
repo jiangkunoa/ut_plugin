@@ -1,0 +1,11 @@
+{
+	"main": "index.html",
+	"logo": "logo.png",
+	"features": [
+		{
+		  "code": "codeif",
+		  "explain": "起个好名儿吧！",
+			"cmds":["codeif", "命名"]
+		}
+	]
+}
